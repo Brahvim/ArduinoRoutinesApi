@@ -22,17 +22,36 @@ namespace RoutinesApi {
     typedef size_t routine_t;
     typedef size_t routine_list_t;
 
+#pragma region // Routines API!
     bool doesRoutineExist(const routine_t id);
     RoutinesApi::ApiCallResult createRoutine(routine_t &id);
     RoutinesApi::ApiCallResult deleteRoutine(routine_t &id);
 
-    bool doesRoutineListExist(const routine_list_t id);
+    RoutinesApi::ApiCallResult addRoutineLoop(routine_t &id, void(*fxnPtr)(void));
+    RoutinesApi::ApiCallResult addRoutineExit(routine_t &id, void(*fxnPtr)(void));
+    RoutinesApi::ApiCallResult addRoutineSetup(routine_t &id, void(*fxnPtr)(void));
+#pragma endregion
+
+#pragma region // Routine-lists API!
+    bool doesRoutineListExist(const routine_list_t listId, const routine_t routineId);
     bool doesRoutineListInclude(const routine_list_t listId, const routine_t routineId);
 
     RoutinesApi::ApiCallResult createRoutineList(routine_list_t &id);
     RoutinesApi::ApiCallResult deleteRoutineList(routine_list_t &id);
 
-    /** @brief Abstract class representing a routine object. Love for the C++ guys! */
+    RoutinesApi::ApiCallResult addRoutineToList(const routine_list_t listId, const routine_t routineId);
+    RoutinesApi::ApiCallResult removeRoutineFromList(const routine_list_t listId, const routine_t routineId);
+
+    RoutinesApi::ApiCallResult toggleRoutineInList(const routine_list_t listId, const routine_t routineId);
+    RoutinesApi::ApiCallResult enableRoutineInList(const routine_list_t listId, const routine_t routineId);
+    RoutinesApi::ApiCallResult disableRoutineInList(const routine_list_t listId, const routine_t routineId);
+
+    RoutinesApi::ApiCallResult isRoutineEnabledForList(const routine_list_t listId, const routine_t routineId);
+    RoutinesApi::ApiCallResult isRoutineEnabledAndInList(const routine_list_t listId, const routine_t routineId);
+
+#pragma endregion
+
+    /** @brief Abstract class representing a routine object. Love for the C++ guys, brothers and sisters! */
     struct IRoutine {
 
         IRoutine();

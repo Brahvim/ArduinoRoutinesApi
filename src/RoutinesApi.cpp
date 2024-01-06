@@ -89,9 +89,16 @@ namespace RoutinesApi {
 
     }
 
-
     RoutinesApi::ApiCallResult deleteRoutine(routine_t &p_routineId) {
+    }
 
+    RoutinesApi::ApiCallResult addRoutineExit(routine_t &id, void(*fxnPtr)(void)) {
+        sizeof(id);
+        sizeof(fxnPtr);
+    }
+
+    RoutinesApi::ApiCallResult addRoutineMethods(routine_t &id, RoutinesApi::IRoutine &itfImpl) {
+        return RoutinesApi::ApiCallResult::OK;
     }
 #pragma endregion
 

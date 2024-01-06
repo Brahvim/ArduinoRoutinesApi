@@ -1,6 +1,9 @@
 #include <Arduino.h>
+
 #include "RoutinesApi.hpp"
+#include "BrahvimMacroUtils.hpp"
 #include "BrahvimArduinoUtils.hpp"
+#include "RoutinesApiDebugLogging.hpp"
 
 void setup() {
     start();
@@ -11,28 +14,26 @@ void loop() {
 
 namespace RoutinesApi {
 
-    // typedef size_t routine_t;
-    // typedef size_t routine_list_t;
+    typedef size_t routine_t;
+    typedef size_t routine_list_t;
 
-    RoutineManager::RoutineManager(const std::initializer_list<RoutinesApi::IRoutine*> &p_routinesList) {
-        // BrahvimArduinoUtils::AvrOnly::arduinoSleep(); // Not needed - references cannot be null!
-        this->routines = p_routinesList;
+    RoutinesApi::IRoutine::IRoutine() {
+        if (RoutinesApi::createRoutine(this->id) != RoutinesApi::ApiCallResult::OK) {
+        }
     }
 
-    RoutinesApi::ApiCallResult RoutineManager::enableRoutine() {
+    RoutinesApi::IRoutine::~IRoutine() {
+        switch (RoutinesApi::deleteRoutine(this->id)) {
+            case RoutinesApi::ApiCallResult::ROUTINE_ABSENT: {
+            } break;
 
+            default: { }
+        }
     }
 
-    RoutinesApi::ApiCallResult RoutineManager::disableRoutine() {
-
+    routine_t createRoutine() {
     }
 
-    bool RoutineManager::hasRoutine(RoutinesApi::IRoutine &routine) {
-        // for (RoutinesApi::IRoutine *i; i != )
-    }
-
-    bool RoutineManager::isRoutineEnabled(RoutinesApi::IRoutine &routine) {
-
-    }
+    routine_t deleteRoutine() { }
 
 }

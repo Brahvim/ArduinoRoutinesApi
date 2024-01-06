@@ -53,5 +53,9 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "vector": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "PRINTNP",
+        "PRINTNPLN"
+    ]
 }

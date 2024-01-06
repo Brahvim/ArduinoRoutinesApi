@@ -52,10 +52,17 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "debuglogging": "cpp"
     },
     "cSpell.words": [
+        "NOPM",
+        "NOPRE",
+        "PRINTLNF",
         "PRINTNP",
-        "PRINTNPLN"
-    ]
+        "PRINTNPF",
+        "PRINTNPLN",
+        "PRINTNPLNF",
+        "PROGMEM"
+    ],
 }

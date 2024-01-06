@@ -21,6 +21,7 @@ namespace RoutinesApi {
 #ifndef ROUTINES_API_NO_CUSTOM_SETUP
 void setup() {
     start();
+    Serial.println("`start()` ended!");
     RoutinesApi::setup();
 }
 #endif
@@ -33,6 +34,10 @@ void loop() {
 #pragma endregion
 
 namespace RoutinesApi {
+
+#pragma region // `static` stuff!
+    // `void(*)` is the same as `void(*)()` and `void(*)(void)`!
+    // I choose the lattermost since it is the most declarative/cleaner.
 
     static routine_list_t s_currentRoutineList;
     static std::map<routine_t, void(*)(void)> s_routinesLoopFxnMap;
@@ -51,9 +56,21 @@ namespace RoutinesApi {
 
     void loop() {
     }
+#pragma endregion
 
+#pragma region // `IRoutine` things!
     IRoutine::IRoutine() {
-        if (RoutinesApi::createRoutine(this->id) != RoutinesApi::ApiCallResult::OK) {
+        const RoutinesApi::ApiCallResult result = RoutinesApi::createRoutine(this->id);
+        if (result == RoutinesApi::ApiCallResult::OK)
+            return;
+
+        DEBUG_PRINT("Failed to instantiate an `IRoutine` instance! Reason:");
+        switch (result) {
+            case RoutinesApi::ApiCallResult::MALLOC_FAILURE: {
+                DEBUG_PRINT("`malloc()` failed!");
+            } break;
+
+            default: { }
         }
     }
 
@@ -65,7 +82,9 @@ namespace RoutinesApi {
             default: { }
         }
     }
+#pragma endregion
 
+#pragma region // Data-oriented API functions for routines!
     RoutinesApi::ApiCallResult createRoutine(routine_t &p_routineId) {
 
     }
@@ -74,7 +93,9 @@ namespace RoutinesApi {
     RoutinesApi::ApiCallResult deleteRoutine(routine_t &p_routineId) {
 
     }
+#pragma endregion
 
+#pragma region // Data-oriented API functions for lists of routines!
     bool isRoutineList(const routine_t p_routineListId) {
         for (auto i : s_routineListsToRoutineVectorsMap)
             if (i.first == p_routineListId)
@@ -82,5 +103,6 @@ namespace RoutinesApi {
 
         return false;
     }
+#pragma endregion
 
 }

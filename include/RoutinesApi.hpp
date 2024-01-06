@@ -48,11 +48,6 @@ namespace RoutinesApi {
 
         virtual ~IRoutine();
 
-        // ...Funny nightmares:
-        // virtual routine_t getId() const final {
-        //     return this->id;
-        // }
-
     private:
 
         routine_t id;

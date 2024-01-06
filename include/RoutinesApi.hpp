@@ -1,5 +1,7 @@
+#ifndef ROUTINES_API_NO_CUSTOM_SETUP
 /** @brief Please use this instead of Arduino's `setup()`. `RoutinesApi` handles `loop()`. */
 void start();
+#endif
 
 namespace RoutinesApi {
 
@@ -20,8 +22,12 @@ namespace RoutinesApi {
     typedef size_t routine_t;
     typedef size_t routine_list_t;
 
+    bool doesRoutineExist(const routine_t id);
     RoutinesApi::ApiCallResult createRoutine(routine_t &id);
     RoutinesApi::ApiCallResult deleteRoutine(routine_t &id);
+
+    bool doesRoutineListExist(const routine_list_t id);
+    bool doesRoutineListInclude(const routine_list_t listId, const routine_t routineId);
 
     RoutinesApi::ApiCallResult createRoutineList(routine_list_t &id);
     RoutinesApi::ApiCallResult deleteRoutineList(routine_list_t &id);

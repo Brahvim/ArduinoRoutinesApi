@@ -19,8 +19,13 @@ namespace RoutinesApi {
 
     };
 
+    /** @brief Routines' handle/ID! "Holds routines"! */
     typedef size_t routine_t;
+
+    /** @brief Routine @e lists' handle/ID! "Holds routine lists"! */
     typedef size_t routine_list_t;
+
+    const char* describeError(const RoutinesApi::ApiCallResult error);
 
     /** @brief Abstract class representing a routine object. Love for the C++ guys, brothers and sisters! */
     struct IRoutine {
@@ -49,9 +54,14 @@ namespace RoutinesApi {
     RoutinesApi::ApiCallResult createRoutine(routine_t &id);
     RoutinesApi::ApiCallResult deleteRoutine(routine_t &id);
 
-    RoutinesApi::ApiCallResult addRoutineLoop(routine_t &id, void(*fxnPtr)(void));
-    RoutinesApi::ApiCallResult addRoutineExit(routine_t &id, void(*fxnPtr)(void));
-    RoutinesApi::ApiCallResult addRoutineSetup(routine_t &id, void(*fxnPtr)(void));
+    // Function pointers take `24` bytes!
+    // Storing calls to them in lambdas and call those lambdas in `IRoutine`s?
+    // Nope! Even worse idea. Like, `48` bytes or something!
+    // We better *suffer* from dynamic dispatch and decrease memory and lookups
+    // by using our *just `12` bytes large[!]* `IRoutine`s! Wooooooo-hoo!
+    // RoutinesApi::ApiCallResult addRoutineLoop(routine_t &id, void(*fxnPtr)(void));
+    // RoutinesApi::ApiCallResult addRoutineExit(routine_t &id, void(*fxnPtr)(void));
+    // RoutinesApi::ApiCallResult addRoutineSetup(routine_t &id, void(*fxnPtr)(void));
     RoutinesApi::ApiCallResult addRoutineMethods(routine_t &id, const RoutinesApi::IRoutine &itfImpl);
 #pragma endregion
 

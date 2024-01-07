@@ -1,11 +1,11 @@
 namespace BrahvimArduinoUtils {
 
 #ifdef __AVR__
-    namespace AvrOnly {
+	namespace AvrOnly {
 
-        void arduinoSleep();
+		void arduinoSleep();
 
-    }
+	}
 #else
 #endif
 

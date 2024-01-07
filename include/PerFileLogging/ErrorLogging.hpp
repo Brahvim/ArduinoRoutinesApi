@@ -10,14 +10,14 @@
 #define ERROR_WRITELN(...) Serial.println(__VA_ARGS__)
 
 /** @brief Logs with "[ERROR] " prefixed. */
-#define ERROR_PRINT(...)         \
-	Serial.print(F("[ERROR] ")); \
+#define ERROR_PRINT(...)			\
+	Serial.print(F("[ERROR] "));	\
 	Serial.print(__VA_ARGS__)
 
 /** @brief Logs with "[ERROR] " prefixed, and a new-line at the end. */
-#define ERROR_PRINTLN(...)		\
-  Serial.print(F("[ERROR] "));	\
-  Serial.println(__VA_ARGS__)
+#define ERROR_PRINTLN(...)			\
+	Serial.print(F("[ERROR] "));	\
+	Serial.println(__VA_ARGS__)
 
 #else // Else, we define these as empty:
 

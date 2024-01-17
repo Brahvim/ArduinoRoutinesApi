@@ -12,5 +12,5 @@ void start() {
         void out() override { Serial.println("Routine switching out..."); }
     } testRoutine;
 
-    RoutinesApi::ApiCallResult result = RoutinesApi::addRoutineMethods(routineId, testRoutine);
+    RoutinesApi::ApiCallResult result = RoutinesApi::createRoutine(testRoutine);
 }

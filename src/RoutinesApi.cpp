@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 #include <map>
+#include <list>
 #include <vector>
 
 #include "MacroUtils.hpp"
@@ -44,9 +45,6 @@ namespace RoutinesApi {
 	static std::map<routine_list_t, std::vector<routine_t>> s_routineListsToRoutineVectorsMap;
 
 	RoutinesApi::ApiCallResult setCurrentRoutineList(const routine_list_t p_currentRoutineList) {
-
-		return RoutinesApi::ApiCallResult::OK;
-
 		s_currentRoutineList = p_currentRoutineList;
 		return RoutinesApi::ApiCallResult::OK;
 	}
@@ -58,50 +56,32 @@ namespace RoutinesApi {
 
 #pragma region // `IRoutine` things!
 	IRoutine::IRoutine() {
-		const RoutinesApi::ApiCallResult result = RoutinesApi::createRoutine(this->id);
-		if (result == RoutinesApi::ApiCallResult::OK)
-			return;
+		// const RoutinesApi::ApiCallResult result = RoutinesApi::createRoutine(this->id);
+		// if (result == RoutinesApi::ApiCallResult::OK)
+		// 	return;
 
-		DEBUG_PRINT_LN("Failed to instantiate an `IRoutine` instance! Reason:");
-		/** @todo */
-		switch (result) {
-			case RoutinesApi::ApiCallResult::MALLOC_FAILURE: {
-				DEBUG_PRINT("`malloc()` failed!");
-			} break;
+		// DEBUG_PRINT_LN("Failed to instantiate an `IRoutine` instance! Reason:");
+		// /** @todo */
+		// switch (result) {
+		// 	case RoutinesApi::ApiCallResult::MALLOC_FAILURE: {
+		// 		DEBUG_PRINT("`malloc()` failed!");
+		// 	} break;
 
-			default: { }
-		}
+		// 	default: { }
+		// }
 	}
 
 	IRoutine::~IRoutine() {
-		switch (RoutinesApi::deleteRoutine(this->id)) {
-			case RoutinesApi::ApiCallResult::ROUTINE_ABSENT: {
-			} break;
+		// switch (RoutinesApi::deleteRoutine(this->id)) {
+		// 	case RoutinesApi::ApiCallResult::ROUTINE_ABSENT: {
+		// 	} break;
 
-			default: { }
-		}
+		// 	default: { }
+		// }
 	}
 #pragma endregion
 
-#pragma region // Data-oriented API functions for routines!
-	RoutinesApi::ApiCallResult createRoutine(routine_t &p_routineId) {
-
-	}
-
-	RoutinesApi::ApiCallResult deleteRoutine(routine_t &p_routineId) {
-
-	}
-
-	RoutinesApi::ApiCallResult addRoutineExit(routine_t &id, void(*fxnPtr)(void)) {
-
-	}
-
-	RoutinesApi::ApiCallResult addRoutineMethods(routine_t &id, RoutinesApi::IRoutine &itfImpl) {
-		return RoutinesApi::ApiCallResult::OK;
-	}
-#pragma endregion
-
-#pragma region // Data-oriented API functions for lists of routines!
+#ifdef ROUTINES_API_DYNAMIC_LISTS // Data-oriented API functions for lists of routines!
 	bool isRoutineList(const routine_t p_routineListId) {
 		for (auto i : s_routineListsToRoutineVectorsMap)
 			if (i.first == p_routineListId)
@@ -109,6 +89,6 @@ namespace RoutinesApi {
 
 		return false;
 	}
-#pragma endregion
+#endif
 
 }

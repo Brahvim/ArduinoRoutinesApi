@@ -30,32 +30,24 @@ namespace RoutinesApi {
 	/** @brief Abstract class representing a routine object. Love for the C++ guys, brothers and sisters! */
 	struct IRoutine {
 
-		IRoutine();
-
-		/** Called when the sketch starts. */
+		/** Called when the routine is first called. */
 		virtual void setup() { };
 
-		/** Called according to how your `RoutineManager` is configured. */
+		/** Called in `loop()` along with other `IRoutine` instances in the order of your routines list. */
 		virtual void loop() { };
 
-		/** Called when the `RoutineManager` has been switched. */
+		/** Called when the routines list has been changed. */
 		virtual void out() { };
-
-		virtual ~IRoutine();
-
-	private:
-
-		routine_t id;
 
 	};
 
 #pragma region // Routines API!
 	bool doesRoutineExist(const routine_t id);
-	RoutinesApi::ApiCallResult createRoutine(IRoutine);
+	RoutinesApi::ApiCallResult createRoutine(IRoutine &routine);
 	RoutinesApi::ApiCallResult deleteRoutine(routine_t &id);
 #pragma endregion
 
-#pragma region // Routine-lists API!
+#ifdef ROUTINES_API_DYNAMIC_LISTS // Routine-lists API!
 	bool doesRoutineListExist(const routine_list_t listId, const routine_t routineId);
 	bool doesRoutineListInclude(const routine_list_t listId, const routine_t routineId);
 
@@ -71,7 +63,6 @@ namespace RoutinesApi {
 
 	RoutinesApi::ApiCallResult isRoutineEnabledForList(const routine_list_t listId, const routine_t routineId);
 	RoutinesApi::ApiCallResult isRoutineEnabledAndInList(const routine_list_t listId, const routine_t routineId);
-
-#pragma endregion
+#endif
 
 }

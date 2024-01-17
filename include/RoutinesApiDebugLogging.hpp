@@ -1,6 +1,6 @@
 #ifdef ROUTINES_API_ENABLE_DEBUG_LOGS
 #define DEBUG_LOGS_PREFIX "[RoutinesApi] "
-#include "PerFileLogging/DebugLogging"
+#include "PerFileLogging/DebugLogging.hpp"
 #endif
 
 // ...Try it out!

@@ -21,8 +21,7 @@ namespace RoutinesApi {
 
 	};
 
-
 }
 
-/** @brief Please use this instead of Arduino's `setup()`. `RoutinesApi` handles `loop()`. */
+/** @brief Write an implementation for this to supply `RoutinesApi::IRoutine` instances. */
 std::initializer_list<RoutinesApi::IRoutine*> fixRoutinesList();

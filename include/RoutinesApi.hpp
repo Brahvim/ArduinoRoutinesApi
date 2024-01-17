@@ -28,9 +28,6 @@ namespace RoutinesApi {
 		const RoutinesApi::IRoutine *array;
 		const RoutinesApi::IRoutine *lastElement;
 
-		template <typename... RoutineT>
-		RoutinesList(const RoutineT &... routines);
-
 	};
 
 }

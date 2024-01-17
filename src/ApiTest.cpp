@@ -13,5 +13,5 @@ std::initializer_list<RoutinesApi::IRoutine*> fixRoutinesList() {
     Serial.begin(9600);
     RoutinesApi::setup();
 
-    return std::initializer_list<RoutinesApi::IRoutine*>{ };
+    return std::initializer_list<RoutinesApi::IRoutine*>{ nullptr };
 }

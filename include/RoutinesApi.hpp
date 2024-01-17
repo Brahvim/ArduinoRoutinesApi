@@ -21,14 +21,6 @@ namespace RoutinesApi {
 
 	};
 
-	class RoutinesList {
-	public:
-
-		const size_t length;
-		const RoutinesApi::IRoutine *array;
-		const RoutinesApi::IRoutine *lastElement;
-
-	};
 
 }
 

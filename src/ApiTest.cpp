@@ -13,4 +13,5 @@ void start() {
     } testRoutine;
 
     RoutinesApi::ApiCallResult result = RoutinesApi::createRoutine(testRoutine);
+    const char *str = RoutinesApi::describeError(result);
 }

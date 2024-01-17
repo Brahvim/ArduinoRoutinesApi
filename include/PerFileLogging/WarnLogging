@@ -16,8 +16,8 @@
 
 /** @brief Logs with "[WARN] " prefixed, and a new-line at the end. */
 #define WARN_PRINTLN(...)		\
-	Serial.print(F("[WARN] "));	\
-  	Serial.println(__VA_ARGS__)
+	Serial.print(F("[WARN] "));	
+	Serial.println(__VA_ARGS__)
 
 #else // Else, we define these as empty:
 

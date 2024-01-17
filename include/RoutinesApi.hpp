@@ -1,3 +1,5 @@
+#include <initializer_list>
+
 #ifndef ROUTINES_API_NO_CUSTOM_SETUP
 /** @brief Please use this instead of Arduino's `setup()`. `RoutinesApi` handles `loop()`. */
 void start();
@@ -22,10 +24,7 @@ namespace RoutinesApi {
 	/** @brief Routines' handle/ID! "Holds routines"! */
 	typedef size_t routine_t;
 
-	/** @brief Routine @e lists' handle/ID! "Holds routine lists"! */
-	typedef size_t routine_list_t;
-
-	const char* describeError(const RoutinesApi::ApiCallResult error);
+	const PROGMEM char* describeError(const RoutinesApi::ApiCallResult error);
 
 	/** @brief Abstract class representing a routine object. Love for the C++ guys, brothers and sisters! */
 	struct IRoutine {
@@ -47,22 +46,29 @@ namespace RoutinesApi {
 	RoutinesApi::ApiCallResult deleteRoutine(routine_t &id);
 #pragma endregion
 
-#ifdef ROUTINES_API_DYNAMIC_LISTS // Routine-lists API!
-	bool doesRoutineListExist(const routine_list_t listId, const routine_t routineId);
-	bool doesRoutineListInclude(const routine_list_t listId, const routine_t routineId);
+#ifdef ROUTINES_API_DYNAMIC_LISTS // Dynamic lists API.
+	/** @brief Routine @e lists' handle/ID! "Holds routine lists"! */
+	typedef size_t routines_list_t;
 
-	RoutinesApi::ApiCallResult createRoutineLiEst(routine_list_t &id);
-	RoutinesApi::ApiCallResult deleteRoutineList(routine_list_t &id);
+	RoutinesApi::ApiCallResult setCurrentRoutinesList(const routines_list_t p_currentRoutineList);
 
-	RoutinesApi::ApiCallResult addRoutineToList(const routine_list_t listId, const routine_t routineId);
-	RoutinesApi::ApiCallResult removeRoutineFromList(const routine_list_t listId, const routine_t routineId);
+	bool doesRoutineListExist(const routines_list_t listId, const routine_t routineId);
+	bool doesRoutineListInclude(const routines_list_t listId, const routine_t routineId);
 
-	RoutinesApi::ApiCallResult toggleRoutineInList(const routine_list_t listId, const routine_t routineId);
-	RoutinesApi::ApiCallResult enableRoutineInList(const routine_list_t listId, const routine_t routineId);
-	RoutinesApi::ApiCallResult disableRoutineInList(const routine_list_t listId, const routine_t routineId);
+	RoutinesApi::ApiCallResult createRoutineLiEst(routines_list_t &id);
+	RoutinesApi::ApiCallResult deleteRoutineList(routines_list_t &id);
 
-	RoutinesApi::ApiCallResult isRoutineEnabledForList(const routine_list_t listId, const routine_t routineId);
-	RoutinesApi::ApiCallResult isRoutineEnabledAndInList(const routine_list_t listId, const routine_t routineId);
+	RoutinesApi::ApiCallResult addRoutineToList(const routines_list_t listId, const routine_t routineId);
+	RoutinesApi::ApiCallResult removeRoutineFromList(const routines_list_t listId, const routine_t routineId);
+
+	RoutinesApi::ApiCallResult toggleRoutineInList(const routines_list_t listId, const routine_t routineId);
+	RoutinesApi::ApiCallResult enableRoutineInList(const routines_list_t listId, const routine_t routineId);
+	RoutinesApi::ApiCallResult disableRoutineInList(const routines_list_t listId, const routine_t routineId);
+
+	RoutinesApi::ApiCallResult isRoutineEnabledForList(const routines_list_t listId, const routine_t routineId);
+	RoutinesApi::ApiCallResult isRoutineEnabledAndInList(const routines_list_t listId, const routine_t routineId);
+#else
+	RoutinesApi::ApiCallResult setRoutinesList(const std::initializer_list<IRoutine*> currentRoutinesList);
 #endif
 
 }

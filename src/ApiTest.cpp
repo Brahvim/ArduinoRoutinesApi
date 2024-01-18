@@ -11,8 +11,8 @@ void loop() {
     RoutinesApi::loop();
 }
 
-RoutinesApi::FixedSizeRoutinesList fixRoutinesList() {
-    class a : public RoutinesApi::IRoutine {
+RoutinesApi::FixedSizeRoutinesList supplyRoutines() {
+    class TestRoutine : public RoutinesApi::IRoutine {
 
         virtual void setup() {
             Serial.println("Hello, world!");
@@ -20,6 +20,6 @@ RoutinesApi::FixedSizeRoutinesList fixRoutinesList() {
 
     };
 
-    static RoutinesApi::FixedSizeRoutinesList list({ new a });
+    static RoutinesApi::FixedSizeRoutinesList list({ new TestRoutine });
     return list;
 }

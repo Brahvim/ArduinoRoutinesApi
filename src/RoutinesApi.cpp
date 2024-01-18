@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-#include "MacroUtils.hpp"
 #include "RoutinesApi.hpp"
 #include "RoutinesApiDebugLogging.hpp"
 
@@ -10,7 +9,7 @@ namespace RoutinesApi {
 
 	void setup() {
 		DEBUG_PRINT_LN("In `RoutinesApi::setup()`...");
-		s_routinesList = fixRoutinesList();
+		s_routinesList = supplyRoutines();
 
 		for (auto i : s_routinesList)
 			i->setup();

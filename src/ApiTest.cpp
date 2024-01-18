@@ -1,4 +1,5 @@
 #include <Arduino.h>
+
 #include "RoutinesApi.hpp"
 #include "BrahvimArduinoUtils.hpp"
 
@@ -11,15 +12,15 @@ void loop() {
     RoutinesApi::loop();
 }
 
+class TestRoutine : public RoutinesApi::IRoutine {
+
+    void setup() override {
+        Serial.println("Hello, world!");
+    }
+
+};
+
 RoutinesApi::FixedSizeRoutinesList supplyRoutines() {
-    class TestRoutine : public RoutinesApi::IRoutine {
-
-        virtual void setup() {
-            Serial.println("Hello, world!");
-        }
-
-    };
-
     static RoutinesApi::FixedSizeRoutinesList list({ new TestRoutine });
     return list;
 }

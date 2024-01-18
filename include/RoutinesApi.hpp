@@ -1,4 +1,4 @@
-#include <initializer_list>
+#include <vector>
 
 namespace RoutinesApi {
 
@@ -21,7 +21,9 @@ namespace RoutinesApi {
 
 	};
 
+	typedef std::vector<RoutinesApi::IRoutine*> FixedSizeRoutinesList;
+
 }
 
 /** @brief Write an implementation for this to supply `RoutinesApi::IRoutine` instances. */
-std::initializer_list<RoutinesApi::IRoutine*> fixRoutinesList();
+RoutinesApi::FixedSizeRoutinesList fixRoutinesList();

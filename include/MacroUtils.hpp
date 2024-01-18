@@ -1,4 +1,7 @@
 #pragma once
 
-#define MACRO_UTILS_TO_STRING(x)	  (# x)
-#define MACRO_UTILS_JOIN_TOKENS(x, y) (x ## y)
+#define MACRO_STR(x)	  (# x)
+#define MACRO_JOIN(x, y) (x ## y)
+
+// ...Kinda' useless. Might *hurt* readability.
+// #define DEREF(x) (*x)

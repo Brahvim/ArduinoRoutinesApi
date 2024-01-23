@@ -21,7 +21,8 @@ namespace RoutinesApi {
 		virtual void setup() { };
 
 		/** @brief Called in yor sketch's `loop()` along with other `IRoutine` instances's `loop()` method,
-		 *  in the order of your routines list. */
+		 * in the order of your routines list.
+		 * */
 		virtual void loop() { };
 
 		/** @brief Called when the routines list has been changed. */

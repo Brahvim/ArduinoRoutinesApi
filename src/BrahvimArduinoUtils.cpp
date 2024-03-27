@@ -13,7 +13,6 @@ namespace BrahvimArduinoUtils {
     namespace AvrOnly {
 
         void arduinoSleep() {
-
             // Arduino sleep modes as explained by ChatGPT:
             /*
             `SLEEP_MODE_IDLE`:
@@ -48,6 +47,7 @@ namespace BrahvimArduinoUtils {
             sleep_enable();
             sleep_mode();
         }
+
     }
 #else
 #endif

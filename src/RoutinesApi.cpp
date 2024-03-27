@@ -22,31 +22,31 @@ namespace RoutinesApi {
 	}
 
 #pragma region // `RoutinesApi::IRoutine` methods.
-	bool IRoutine::setStatus(bool p_status) {
+	inline bool IRoutine::setStatus(const bool p_status) {
 		const bool toRet = this->status;
 		this->status = p_status;
 		return toRet;
 	}
 
-	bool IRoutine::toggle() {
+	inline bool IRoutine::toggle() {
 		const bool toRet = this->status;
 		this->status = !this->status;
 		return toRet;
 	}
 
-	bool IRoutine::enable() {
+	inline bool IRoutine::enable() {
 		const bool toRet = this->status;
 		this->status = true;
 		return toRet;
 	}
 
-	bool IRoutine::disable() {
+	inline bool IRoutine::disable() {
 		const bool toRet = this->status;
 		this->status = false;
 		return toRet;
 	}
 
-	bool IRoutine::isEnabled() const {
+	inline bool IRoutine::isEnabled() const {
 		return this->status;
 	}
 #pragma endregion

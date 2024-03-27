@@ -6,7 +6,7 @@
 // ...Try it out!
 
 /*
-// Code example!:
+Code example!:
 
 ```cpp
 DEBUG_PRINT_NOPRE_NOPM("Hello, world!");
